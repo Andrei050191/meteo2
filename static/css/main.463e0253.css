@@ -1,0 +1,2 @@
+@tailwind base;@tailwind components;@tailwind utilities;body{animation:gradient 15s ease infinite;background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e1b4b);background-size:400% 400%}@keyframes gradient{0%{background-position:0 50%}50%{background-position:100% 50%}to{background-position:0 50%}}
+/*# sourceMappingURL=main.463e0253.css.map*/
