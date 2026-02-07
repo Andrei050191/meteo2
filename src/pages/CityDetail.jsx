@@ -78,12 +78,12 @@ const CityDetail = () => {
 
         {forecast.map((day, index) => (
           <div key={index} className="bg-slate-800/40 backdrop-blur-sm border border-white/5 p-4 rounded-2xl flex items-center justify-between hover:bg-slate-800/60 transition-all">
-            <div className="w-20">
+            <div className="w-32">
               <p className="font-bold text-sm">
-                {new Date(day.dt * 1000).toLocaleDateString('ro-RO', { weekday: 'short' })}
+                {new Date(day.dt * 1000).toLocaleDateString('ro-RO', { weekday: 'long' })}
               </p>
-              <p className="text-xs opacity-50">
-                {new Date(day.dt * 1000).toLocaleDateString('ro-RO', { day: 'numeric', month: 'short' })}
+              <p className="text-xs opacity-50 capitalize">
+                {new Date(day.dt * 1000).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long' })}
               </p>
             </div>
             
