@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/meteo2/static/css/main.0fb58cff.css",
+    "main.js": "/meteo2/static/js/main.5d4acb33.js",
+    "static/js/453.d2ed222f.chunk.js": "/meteo2/static/js/453.d2ed222f.chunk.js",
+    "index.html": "/meteo2/index.html",
+    "main.0fb58cff.css.map": "/meteo2/static/css/main.0fb58cff.css.map",
+    "main.5d4acb33.js.map": "/meteo2/static/js/main.5d4acb33.js.map",
+    "453.d2ed222f.chunk.js.map": "/meteo2/static/js/453.d2ed222f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0fb58cff.css",
+    "static/js/main.5d4acb33.js"
+  ]
+}
