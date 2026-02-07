@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/meteo2/static/css/main.463e0253.css",
-    "main.js": "/meteo2/static/js/main.37460e1a.js",
+    "main.js": "/meteo2/static/js/main.e3a4ed55.js",
     "static/js/453.d2ed222f.chunk.js": "/meteo2/static/js/453.d2ed222f.chunk.js",
     "index.html": "/meteo2/index.html",
     "main.463e0253.css.map": "/meteo2/static/css/main.463e0253.css.map",
-    "main.37460e1a.js.map": "/meteo2/static/js/main.37460e1a.js.map",
+    "main.e3a4ed55.js.map": "/meteo2/static/js/main.e3a4ed55.js.map",
     "453.d2ed222f.chunk.js.map": "/meteo2/static/js/453.d2ed222f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.463e0253.css",
-    "static/js/main.37460e1a.js"
+    "static/js/main.e3a4ed55.js"
   ]
 }
