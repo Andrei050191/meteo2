@@ -4,7 +4,8 @@ import CityDetail from './pages/CityDetail';
 
 function App() {
   return (
-    <BrowserRouter>
+    /* Am adăugat basename pentru ca paginile să se încarce corect pe GitHub Pages */
+    <BrowserRouter basename="/meteo2">
       <div className="min-h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
