@@ -10,7 +10,7 @@ const Home = () => {
   const [loadingLocation, setLoadingLocation] = useState(false);
   const navigate = useNavigate();
 
-  const API_KEY = "PUNE_AICI_CHEIA_TA"; // Asigură-te că e aceeași cheie
+  const API_KEY = "4d2631c6c6c4dffc5b233b2636f0ec33"; // Asigură-te că e aceeași cheie
 
   const getGreeting = () => {
     const hour = new Date().getHours();
