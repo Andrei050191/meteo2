@@ -32,27 +32,27 @@ const CityDetail = () => {
 
   if (error) return (
     <div className="p-10 text-white text-center">
-      <p className="mb-4">Orașul "{cityName}" nu a fost găsit sau datele sunt indisponibile.</p>
+      <p className="mb-4">Orașul "{cityName}" nu a fost găsit.</p>
       <button onClick={() => navigate('/')} className="bg-blue-600 px-6 py-2 rounded-xl">Înapoi</button>
     </div>
   );
 
   if (!weather) return <div className="p-10 text-white text-center animate-pulse">Se încarcă datele...</div>;
 
-  // Grupăm datele pe zile cu verificare de siguranță
+  // Grupăm datele: fiecare index reprezintă o zi (8 segmente de 3 ore = 24 ore)
   const daysData = [];
   if (weather?.list) {
     for (let i = 0; i < weather.list.length; i += 8) {
+      // Luăm fix 8 segmente pentru a acoperi 24 de ore pe grafic
       daysData.push(weather.list.slice(i, i + 8));
     }
   }
 
-  if (daysData.length === 0) return <div className="p-10 text-white text-center">Lipsă date prognoză.</div>;
+  const currentDaySegments = daysData[selectedDayIndex] || daysData[0];
+  const mainInfo = currentDaySegments[0];
 
-  const currentDay = daysData[selectedDayIndex] || daysData[0];
-  const mainInfo = currentDay[0];
-
-  const chartData = currentDay.map(item => ({
+  // Pregătim datele pentru graficul de 24 ore
+  const chartData = currentDaySegments.map(item => ({
     ora: new Date(item.dt * 1000).toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' }),
     temp: Math.round(item.main.temp)
   }));
@@ -64,7 +64,8 @@ const CityDetail = () => {
       </button>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-900 p-8 rounded-[2.5rem] shadow-2xl text-center border border-white/20 h-full flex flex-col justify-center transition-all duration-500">
+        {/* Card Principal */}
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-900 p-8 rounded-[2.5rem] shadow-2xl text-center border border-white/20 h-full flex flex-col justify-center">
           <h2 className="text-5xl font-black capitalize mb-2">{weather.city.name}</h2>
           <p className="text-blue-100 font-bold mb-1 opacity-80 uppercase tracking-widest text-sm">
             {new Date(mainInfo.dt * 1000).toLocaleDateString('ro-RO', { weekday: 'long', day: 'numeric', month: 'long' })}
@@ -83,9 +84,10 @@ const CityDetail = () => {
           </div>
         </div>
 
+        {/* Grafic 24 Ore */}
         <div className="bg-slate-900/40 backdrop-blur-md p-6 rounded-[2.5rem] border border-white/10 shadow-xl flex flex-col justify-center">
           <h3 className="text-lg font-bold mb-8 flex items-center gap-2 text-blue-300 justify-center md:justify-start capitalize">
-            <Calendar size={20}/> Evoluție termică: {new Date(mainInfo.dt * 1000).toLocaleDateString('ro-RO', {weekday: 'long'})}
+            <Calendar size={20}/> Prognoză 24h: {new Date(mainInfo.dt * 1000).toLocaleDateString('ro-RO', {weekday: 'long'})}
           </h3>
           <div className="h-[280px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -104,7 +106,8 @@ const CityDetail = () => {
         </div>
       </div>
 
-      <h3 className="font-bold text-xl px-2 mb-6 text-blue-300">Prognoză pe zile (Apasă pentru detalii)</h3>
+      {/* Selector Zile */}
+      <h3 className="font-bold text-xl px-2 mb-6 text-blue-300">Selectează ziua</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {daysData.map((day, i) => (
           <button 
@@ -112,7 +115,7 @@ const CityDetail = () => {
             onClick={() => setSelectedDayIndex(i)}
             className={`p-5 rounded-[2rem] flex flex-col items-center gap-2 transition-all border ${
               selectedDayIndex === i 
-              ? "bg-blue-600 border-blue-400 shadow-lg scale-105 shadow-blue-900/40" 
+              ? "bg-blue-600 border-blue-400 shadow-lg scale-105" 
               : "bg-white/5 border-white/10 hover:bg-white/10"
             }`}
           >
@@ -121,7 +124,6 @@ const CityDetail = () => {
             </span>
             <img src={`http://openweathermap.org/img/wn/${day[0].weather[0]?.icon}.png`} className="w-12 h-12" alt="w" />
             <div className="font-black text-2xl">{Math.round(day[0].main.temp)}°</div>
-            <span className="text-[10px] opacity-40">{new Date(day[0].dt * 1000).toLocaleDateString('ro-RO', {day: 'numeric', month: 'long'})}</span>
           </button>
         ))}
       </div>
