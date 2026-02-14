@@ -68,7 +68,7 @@ const CityDetail = () => {
         {/* Graficul - Se schimbă la click pe zi */}
         <div className="bg-slate-900/40 backdrop-blur-md p-6 rounded-[2.5rem] border border-white/10 shadow-xl flex flex-col justify-center">
           <h3 className="text-lg font-bold mb-8 flex items-center gap-2 text-blue-300 justify-center md:justify-start">
-            <Calendar size={20}/> Evoluție termică: {new Date(mainInfo.dt * 1000).toLocaleDateString('ro-RO', {weekday: 'short'})}
+            <Calendar size={20}/> Evoluție termică: {new Date(mainInfo.dt * 1000).toLocaleDateString('ro-RO', {weekday: 'long'})}
           </h3>
           <div className="h-[280px] w-full">
             <ResponsiveContainer width="100%" height="100%">
