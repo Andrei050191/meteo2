@@ -7,7 +7,7 @@ const CityDetail = () => {
   const { cityName } = useParams();
   const navigate = useNavigate();
   const [weather, setWeather] = useState(null);
-  const [selectedDayIndex, setSelectedDayIndex] = useState(0); // Ziua curentă selectată
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0); 
   const API_KEY = "4d2631c6c6c4dffc5b233b2636f0ec33";
 
   useEffect(() => {
@@ -23,7 +23,6 @@ const CityDetail = () => {
 
   if (!weather) return <div className="p-10 text-white text-center">Se încarcă...</div>;
 
-  // Grupăm datele pe zile (OpenWeather dă segmente de 3 ore)
   const daysData = [];
   for (let i = 0; i < weather.list.length; i += 8) {
     daysData.push(weather.list.slice(i, i + 8));
@@ -32,7 +31,6 @@ const CityDetail = () => {
   const currentDay = daysData[selectedDayIndex] || daysData[0];
   const mainInfo = currentDay[0];
 
-  // Pregătim datele pentru graficul zilei selectate
   const chartData = currentDay.map(item => ({
     ora: new Date(item.dt * 1000).toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' }),
     temp: Math.round(item.main.temp)
@@ -45,7 +43,6 @@ const CityDetail = () => {
       </button>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        {/* Cardul principal - Reflectă ziua selectată */}
         <div className="bg-gradient-to-br from-blue-600 to-indigo-900 p-8 rounded-[2.5rem] shadow-2xl text-center border border-white/20 h-full flex flex-col justify-center transition-all duration-500">
           <h2 className="text-5xl font-black capitalize mb-2">{weather.city.name}</h2>
           <p className="text-blue-100 font-bold mb-1 opacity-80 uppercase tracking-widest text-sm">
@@ -65,9 +62,9 @@ const CityDetail = () => {
           </div>
         </div>
 
-        {/* Graficul - Se schimbă la click pe zi */}
         <div className="bg-slate-900/40 backdrop-blur-md p-6 rounded-[2.5rem] border border-white/10 shadow-xl flex flex-col justify-center">
-          <h3 className="text-lg font-bold mb-8 flex items-center gap-2 text-blue-300 justify-center md:justify-start">
+          <h3 className="text-lg font-bold mb-8 flex items-center gap-2 text-blue-300 justify-center md:justify-start capitalize">
+            {/* AFISARE PE LUNG A ZILEI IN TITLUL GRAFICULUI */}
             <Calendar size={20}/> Evoluție termică: {new Date(mainInfo.dt * 1000).toLocaleDateString('ro-RO', {weekday: 'long'})}
           </h3>
           <div className="h-[280px] w-full">
@@ -87,7 +84,6 @@ const CityDetail = () => {
         </div>
       </div>
 
-      {/* Lista de zile - Acum devine interactivă */}
       <h3 className="font-bold text-xl px-2 mb-6 text-blue-300">Prognoză pe zile (Apasă pentru detalii)</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {daysData.map((day, i) => (
@@ -101,6 +97,7 @@ const CityDetail = () => {
             }`}
           >
             <span className="font-bold text-xs uppercase opacity-70">
+              {/* AFISARE PE LUNG A ZILEI PE BUTOANE */}
               {new Date(day[0].dt * 1000).toLocaleDateString('ro-RO', {weekday: 'long'})}
             </span>
             <img src={`http://openweathermap.org/img/wn/${day[0].weather[0].icon}.png`} className="w-12 h-12" alt="w" />
