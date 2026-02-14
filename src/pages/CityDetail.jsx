@@ -101,11 +101,11 @@ const CityDetail = () => {
             }`}
           >
             <span className="font-bold text-xs uppercase opacity-70">
-              {new Date(day[0].dt * 1000).toLocaleDateString('ro-RO', {weekday: 'short'})}
+              {new Date(day[0].dt * 1000).toLocaleDateString('ro-RO', {weekday: 'long'})}
             </span>
             <img src={`http://openweathermap.org/img/wn/${day[0].weather[0].icon}.png`} className="w-12 h-12" alt="w" />
             <div className="font-black text-2xl">{Math.round(day[0].main.temp)}°</div>
-            <span className="text-[10px] opacity-40">{new Date(day[0].dt * 1000).toLocaleDateString('ro-RO', {day: 'numeric', month: 'short'})}</span>
+            <span className="text-[10px] opacity-40">{new Date(day[0].dt * 1000).toLocaleDateString('ro-RO', {day: 'numeric', month: 'long'})}</span>
           </button>
         ))}
       </div>
