@@ -85,7 +85,7 @@ const Home = () => {
                 placeholder="Caută un oraș..." 
                 className="w-full bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 p-5 pl-14 rounded-[2rem] focus:ring-2 focus:ring-blue-500/50 outline-none transition-all text-white shadow-2xl"
               />
-              <Search className="absolute left-6 top-5.5 text-slate-500 group-focus-within:text-blue-400 transition-colors" />
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-400 transition-colors pointer-events-none" size={20} />
               <button className="absolute right-3 top-2.5 bg-blue-600 px-6 py-3 rounded-2xl hover:bg-blue-500 active:scale-95 transition-all font-black shadow-lg">
                 +
               </button>
