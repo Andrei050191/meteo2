@@ -3,6 +3,7 @@ import { db } from '../firebase';
 import { collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Trash2, CloudSun, Navigation } from 'lucide-react';
+import { LocateFixed } from "lucide-react";
 
 const Home = () => {
   const [cityName, setCityName] = useState('');
@@ -96,10 +97,10 @@ const Home = () => {
             </form>
 
             <button 
-              onClick={handleLocation}
-              className="bg-slate-800/40 hover:bg-slate-700 p-5 rounded-[2rem] text-blue-400 transition-all active:scale-95 border border-slate-700/50 shadow-2xl"
-            >
-              <Navigation size={24} className={loadingLocation ? "animate-spin" : ""} />
+               onClick={handleLocation}
+               className="bg-slate-800/40 hover:bg-slate-700 p-5 rounded-[2rem] text-blue-400 transition-all active:scale-95 border border-slate-700/50 shadow-2xl"
+              >
+              <LocateFixed size={24} className={loadingLocation ? "animate-spin" : ""} />
             </button>
           </div>
         </div>
